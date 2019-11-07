@@ -1,5 +1,5 @@
 var xhr = new XMLHttpRequest(); //웹사이트의 XML을 요청하여 페이지의 내용를 파싱합니다.
-xhr.open('GET', "https://king10tech.github.io"); //메소드와 파싱할 주소를 인자값으로 전달합니다. 이 예제에서는 example.com로 지정했습니다
+xhr.open('GET', "https://king10tech.github.io"); //메소드와 파싱할 주소를 인자값으로 전달합니다.
 xhr.send(); //XML 요청을 전송합니다.
 
 xhr.addEventListener('load', function(){
