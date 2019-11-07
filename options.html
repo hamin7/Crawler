@@ -1,0 +1,338 @@
+
+<!DOCTYPE html>
+<html lang="ko" class="h-100">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta charset="utf-8">
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <link href="css/bootstrap-tagsinput.css" rel="stylesheet">
+</head>
+
+<body class="bg-light d-flex flex-column h-100">
+  <main role="main" class="flex-shrink-0">
+    <div class="container">
+      <!-- 토스트 -->
+      <div aria-live="polite" aria-atomic="true" class="sticky-top" style="z-index:1070;">
+        <div id="toastListPanel" style="position: absolute; top: 0; right: 0;">
+          <!-- dynamic append toasts -->
+        </div>
+      </div>
+
+      <div class="d-flex align-items-center p-3 my-3 text-white bg-primary rounded shadow-sm">
+        <h1 class="mr-3"><i class="fas fa-rss"></i></h1>
+        <div class="">
+          <h6 class="mb-0 text-white" data-i18n-code="app_name">스크래퍼</h6>
+          <small data-i18n-code="setting">설정</small>
+        </div>
+      </div>
+
+      <nav class="border-bottom pb-1">
+        <div class="nav nav-pills" id="nav-tab" role="tablist">
+          <a class="nav-item nav-link active" id="nav-settings-tab" data-toggle="tab" href="#nav-settings" role="tab" aria-controls="nav-settings" aria-selected="true" data-i18n-code="setting">설정</a>
+          <a class="nav-item nav-link" id="nav-feeds-tab" data-toggle="tab" href="#nav-feeds" role="tab" aria-controls="nav-feeds" aria-selected="false" data-i18n-code="feed">피드</a>
+          <a class="nav-item nav-link" id="nav-crawler-tab" data-toggle="tab" href="#nav-crawler" role="tab" aria-controls="nav-crawler" aria-selected="false" data-i18n-code="crawler">크롤러</a>
+          <a class="nav-item nav-link" id="nav-backup-tab" data-toggle="tab" href="#nav-backup" role="tab" aria-controls="nav-backup" aria-selected="false" data-i18n-code="backup">백업</a>
+        </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <!-- Settings 탭 -->
+        <div class="tab-pane fade show active" id="nav-settings" role="tabpanel" aria-labelledby="nav-settings-tab">
+
+          <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <h6 class="border-bottom border-gray" data-i18n-code="interval">갱신 간격</h6>
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-sm btn-primary">
+                <input type="radio" name="interval" value="15" autocomplete="off"> 15 <span data-i18n-code="minute">분</span>
+              </label>
+              <label class="btn btn-sm btn-primary">
+                <input type="radio" name="interval" value="30" autocomplete="off"> 30 <span data-i18n-code="minute">분</span>
+              </label>
+              <label class="btn btn-sm btn-primary">
+                <input type="radio" name="interval" value="60" autocomplete="off"> 1 <span data-i18n-code="hour">시간</span>
+              </label>
+              <label class="btn btn-sm btn-primary">
+                <input type="radio" name="interval" value="144" autocomplete="off"> 1 <span data-i18n-code="day">일</span>
+              </label>
+            </div>
+
+            <h6 class="border-bottom border-gray mt-5" data-i18n-code="stored_period">저장 기간</h6>
+            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+              <label class="btn btn-sm btn-primary">
+                <input type="radio" name="expireDay" value="1" autocomplete="off"> 1 <span data-i18n-code="day">일</span>
+              </label>
+              <label class="btn btn-sm btn-primary">
+                <input type="radio" name="expireDay" value="3" autocomplete="off"> 3 <span data-i18n-code="day">일</span>
+              </label>
+              <label class="btn btn-sm btn-primary">
+                <input type="radio" name="expireDay" value="7" autocomplete="off"> 7 <span data-i18n-code="day">일</span>
+              </label>
+            </div>
+
+            <h6 class="border-bottom border-gray mt-5">
+              <span data-i18n-code="notification">알림</span>
+              <small class="text-muted" data-i18n-code="notification_setting_msg">키워드 등록시 해당 키워드가 포함된 글만 알림 표시 됩니다</small>
+            </h6>
+            <form class="form-inline">
+              <div class="custom-control custom-switch pr-3">
+                <input type="checkbox" class="custom-control-input" id="notification">
+                <label class="custom-control-label" for="notification" data-i18n-code="keywords">키워드</label>
+              </div>
+              <div>
+                <input type="text" id="keywords" class="form-control form-control-sm" data-role="tagsinput" placeholder="키워드, 입력" data-i18n-code="input_keyword_msg" data-i18n-attr="placeholder">
+              </div>
+            </form>
+            <button class="btn btn-primary btn-block mt-5" type="button" id="saveSettingsBtn" data-i18n-code="save">저장</button>
+          </div>
+
+        </div> <!-- Settings 탭 -->
+
+        <!-- Feeds 탭 -->
+        <div class="tab-pane fade" id="nav-feeds" role="tabpanel" aria-labelledby="nav-feeds-tab">
+          <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <h6 class="border-bottom border-gray" data-i18n-code="add_feed">피드 추가</h6>
+            <div class="input-group input-group-sm mb-3">
+              <input type="text" id="searchUrl" class="form-control" placeholder="웹사이트나 피드 주소를 입력하세요" data-i18n-code="input_feed_url_msg" data-i18n-attr="placeholder">
+              <div class="input-group-append">
+                <button class="btn btn-sm btn-primary" type="button" id="searchFeedBtn" data-i18n-code="search">검색</button>
+              </div>
+            </div>
+          </div>
+          <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <h6 class="border-bottom border-gray">
+              <span data-i18n-code="feed_setting">피드 설정</span>
+              <small class="text-muted" data-i18n-code="feed_setting_msg">오류가 발생한 피드는 붉은색으로 표시됩니다</small>
+            </h6>
+            <ul id="feedListPanel" class="list-group">
+              <!-- dynamic append feeds -->
+            </ul>
+            <button class="btn btn-primary btn-block mt-3" type="button" id="saveFeedsBtn" data-i18n-code="save">저장</button>
+          </div>
+        </div> <!-- Feeds 탭 -->
+
+        <!-- Crawler 탭 -->
+        <div class="tab-pane fade" id="nav-crawler" role="tabpanel" aria-labelledby="nav-crawler-tab">
+          <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <h6 class="border-bottom border-gray" data-i18n-code="add_crawler">크롤러 추가</h6>
+            <div class="input-group input-group-sm mb-3">
+              <input type="text" id="searchWebUrl" class="form-control" placeholder="웹사이트 주소를 입력하세요" data-i18n-code="input_crawler_url_msg" data-i18n-attr="placeholder">
+              <div class="input-group-append">
+                <button class="btn btn-sm btn-primary" type="button" id="getSiteBtn" data-i18n-code="search">검색</button>
+              </div>
+            </div>
+            <button class="btn btn-primary btn-block" type="button" id="searchCrawlerBtn" data-toggle="collapse" data-target="#collapseRecentCrawler" aria-expanded="false" aria-controls="collapseRecentCrawler">
+              <span data-i18n-code="view_public_crawler">공개 크롤러 보기</span> <i class="fas fa-angle-down"></i>
+            </button>
+            <div class="collapse" id="collapseRecentCrawler">
+              <div class="card card-body">
+                <ul id="crawlerRecentListPanel" class="list-group">
+                  <!-- dynamic append recent crawler -->
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <h6 class="border-bottom border-gray">
+              <span data-i18n-code="crawler">크롤러</span>
+              <small class="text-muted" data-i18n-code="crawler_setting_msg">오류가 발생한 크롤러는 붉은색으로 표시됩니다</small>
+            </h6>
+            <ul id="crawlerListPanel" class="list-group">
+              <!-- dynamic append crawler -->
+            </ul>
+          </div>
+        </div> <!-- Crawler 탭 -->
+
+        <!-- Backup 탭 -->
+        <div class="tab-pane fade" id="nav-backup" role="tabpanel" aria-labelledby="nav-backup-tab">
+          <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <h6 class="border-bottom border-gray">
+              <span data-i18n-code="backup">백업</span>
+              <small class="text-muted" data-i18n-code="backup_setting_msg">등록된 피드 및 크롤러 정보를 파일로 저장 할 수 있습니다</small>
+            </h6>
+            <div class="row">
+              <div class="col">
+                <label for="exportFileBtn" data-i18n-code="export">내보내기</label>
+                <button class="btn btn-primary btn-block" type="button" id="exportFileBtn" data-i18n-code="download">다운로드</button>
+              </div>
+              <div class="col">
+                <label for="importFile" data-i18n-code="import">가져오기</label>
+                <div class="custom-file">
+                  <input type="file" class="custom-file-input" id="importFile">
+                  <label class="custom-file-label" for="importFile" data-browse="찾기" data-i18n-code="browse" data-i18n-attr="data-browse"><span data-i18n-code="choose_file">파일을 선택하세요</span></label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> <!-- Backup 탭 -->
+
+      </div>
+
+      <!-- feed 발견시 띄우는 창 -->
+      <div id="addFeedsModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h6 class="modal-title" data-i18n-code="feed_found">피드를 찾았습니다!</h6>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <ul id="searchFeedListPanel" class="list-group">
+                <!-- dynamic append feeds -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 크롤러 등록 창 -->
+      <div id="addCrawlerModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h6 class="modal-title" data-i18n-code="crawler_setting">크롤러 설정</h6>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group row">
+                  <label for="webUrl" class="col-2 col-form-label col-form-label-sm">URL:</label>
+                  <div class="col-10">
+                    <a href="" id="webUrl" target="_blank"></a>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="feedTitle" class="col-2 col-form-label col-form-label-sm"><span data-i18n-code="crawler_title">크롤러 이름</span>:</label>
+                  <div class="col-10">
+                    <input type="text" class="form-control form-control-sm is-invalid" id="feedTitle">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="htmlText" class="col-2 col-form-label col-form-label-sm">HTML:</label>
+                  <div class="col-10">
+                    <textarea class="form-control form-control-sm" id="htmlText" style="min-height: 200px; font-size: 12px; line-height: 1.1;"></textarea>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-10 offset-2 row">
+                    <div class="col-8">
+                      <small class="text-muted">
+                        <a href="https://api.jquery.com/category/selectors/" class="text-reset" target="_blank"><span data-i18n-code="jquery_selector">제이쿼리 셀렉터</span> <i class="fas fa-external-link-alt"></i></a>
+                      </small>
+                    </div>
+                    <div class="col">
+                      <small class="text-muted">
+                        <a href="https://www.w3schools.com/jsref/dom_obj_all.asp" class="text-reset" target="_blank"><span data-i18n-code="element_property">엘레멘트 프로퍼티</span> <i class="fas fa-external-link-alt"></i></a>
+                      </small>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="titleSelector" class="col-2 col-form-label col-form-label-sm"><span data-i18n-code="title">타이틀</span>:</label>
+                  <div class="form-row col-10 ml-0">
+                    <div class="col-8 pl-0">
+                      <input type="text" class="form-control form-control-sm is-invalid" id="titleSelector" placeholder="셀렉터 표현식" data-i18n-code="selector_expression" data-i18n-attr="placeholder" />
+                    </div>
+                    <div class="col pr-0">
+                      <input type="text" class="form-control form-control-sm is-invalid" id="titleProp" placeholder="프로퍼티명" data-i18n-code="property_name" data-i18n-attr="placeholder" />
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="linkSelector" class="col-sm-2 col-form-label col-form-label-sm"><span data-i18n-code="link">링크</span>:</label>
+                  <div class="form-row col-10 ml-0">
+                    <div class="col-8 pl-0">
+                      <input type="text" class="form-control form-control-sm is-invalid" id="linkSelector" placeholder=".list a:contains('searchtext')" />
+                    </div>
+                    <div class="col pr-0">
+                      <input type="text" class="form-control form-control-sm is-invalid" id="linkProp" placeholder="href" />
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="dateSelector" class="col-2 col-form-label col-form-label-sm"><span data-i18n-code="date">날짜</span>:</label>
+                  <div class="form-row col-10 ml-0">
+                    <div class="col-8 pl-0">
+                      <input type="text" class="form-control form-control-sm is-valid" id="dateSelector" placeholder="span[data-role=sample]" />
+                    </div>
+                    <div class="col pr-0">
+                      <input type="text" class="form-control form-control-sm is-valid" id="dateProp" placeholder="innerText" />
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="imageSelector" class="col-2 col-form-label col-form-label-sm"><span data-i18n-code="thumbnail">이미지</span>:</label>
+                  <div class="form-row col-10 ml-0">
+                    <div class="col-8 pl-0">
+                      <input type="text" class="form-control form-control-sm is-valid" id="imageSelector" placeholder="#list .row:not(:has(img)), #list .row img" />
+                    </div>
+                    <div class="col pr-0">
+                      <input type="text" class="form-control form-control-sm is-valid" id="imageProp" placeholder="src" />
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="contentSelector" class="col-2 col-form-label col-form-label-sm"><span data-i18n-code="description">설명</span>:</label>
+                  <div class="form-row col-10 ml-0">
+                    <div class="col-8 pl-0">
+                      <input type="text" class="form-control form-control-sm is-valid" id="contentSelector" placeholder="div.list > .row > div.descript" />
+                    </div>
+                    <div class="col pr-0">
+                      <input type="text" class="form-control form-control-sm is-valid" id="contentProp" placeholder="lastChild.textContent" />
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col d-flex justify-content-end">
+                    <button type="button" class="btn btn-primary" id="previewCrawlerBtn" data-i18n-code="preview">미리보기</button>
+                  </div>
+                </div>
+                <hr/>
+                <div class="form-group row">
+                  <label class="col-2 col-form-label col-form-label-sm"><span data-i18n-code="preview">미리보기</span>:</label>
+                  <div class="col-10">
+                    <ul id="postPanel" class="list-group" style="line-height:1.2; font-size:0.8rem;">
+                      <!-- dynamic append posts -->
+                    </ul>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <small class="text-muted" data-i18n-code="add_crawler_msg">크롤러 등록 시 다른 사용자들에게 공개됩니다</small>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" data-i18n-code="close">닫기</button>
+              <button type="button" class="btn btn-primary" id="saveCrawlerBtn" data-i18n-code="save">저장</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="footer mt-auto py-3">
+    <div class="container">
+      <div class="text-center">
+        <span class="text-muted">© 2019 sshine1st - </span><a href="https://wepplication.github.io/tools/scrapper/">Homepage</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jQuery.ajax.arraybuffer.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/bootstrap-tagsinput-custom.js"></script>
+  <script src="js/fontawesome.all.min.js"></script>
+  <script src="js/feed_finder.js"></script>
+  <script src="js/htmlencode.js"></script>
+  <script src="js/moment-with-locales.js"></script>
+  <script src="js/stitch.js"></script>
+  <script src="js/FileSaver.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/options.js"></script>
+</body>
+
+</html>
