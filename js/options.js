@@ -61,7 +61,7 @@
     $toast.toast("show");
   }
 
-  // 寃��됲븳 �쇰뱶 �앹뾽�� 肉뚮━湲�
+  // �??�한 ?�드 ?�업?? 뿌리�?
   function appendSearchFeed(title, url){
     isNewFeed(url, function(isNew, feeds){
       var domain = extractHostname(url);
@@ -88,7 +88,7 @@
     });
   }
 
-  // �꾩옱 異붽��섏뼱 �덈뒗 �쇰뱶�� 由ъ뒪�� 肉뚮━湲�
+  // ?�재 추�??�어 ?�는 ?�드?? 리스?? 뿌리�?
   function appendFeed(feed){
     var feedTag ="";
     feedTag += '<li class="list-group-item list-group-item-action '+(feed.isError?'list-group-item-danger':'list-group-item-primary')+'">';
@@ -108,7 +108,7 @@
     $("#feedListPanel").append($feedTag);
   }
 
-  // �꾩옱 異붽��섏뼱 �덈뒗 �щ·�щ뱾 由ъ뒪�� 肉뚮━湲�
+  // ?�재 추�??�어 ?�는 ?�롤?�들 리스?? 뿌리�?
   function appendCrawler(feed){
     var feedTag ="";
     feedTag += '<li class="list-group-item list-group-item-action '+(feed.isError?'list-group-item-danger':'list-group-item-primary')+'">';
@@ -139,7 +139,7 @@
     $("#crawlerListPanel").append($feedTag);
   }
 
-  // �⑤뱾�� 異붽��� 理쒓렐 �щ·�щ뱾 由ъ뒪�� 肉뚮━湲�
+  // ?�들?? 추�??? 최근 ?�롤?�들 리스?? 뿌리�?
   function appendRecentCrawler(feed){
     var feedTag ="";
     feedTag += '<li class="list-group-item list-group-item-action list-group-item-light">';
@@ -202,7 +202,7 @@
     $(selector).append($postTag);
   }
 
-  // 誘몃━蹂닿린
+  // 미리보기
   function previewer(){
     $("#postPanel").children().remove();
     var posts = getPostsObjFromHtmlText();
@@ -213,7 +213,7 @@
 
   }
 
-  // 誘몃━蹂닿린
+  // 미리보기
   function getPostsObjFromHtmlText(){
     var feedUrl = $("#webUrl").attr("href");
     var feedTitle = $("#feedTitle").val();
@@ -245,82 +245,82 @@
       var $images = $html.find(imageSelector);
       var $contents = $html.find(contentSelector);
     }catch(e){
-      toast(whale.i18n.getMessage("preview"), e.message); // "誘몃━ 蹂닿린"
+      toast(whale.i18n.getMessage("preview"), e.message); // "미리 보기"
       return;
     }
 
     if(linkSelector == ""){
-      toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("input_selector_msg")); // "誘몃━ 蹂닿린", "���됲꽣 �쒗쁽�앹쓣 �낅젰�댁＜�몄슂"
+      toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("input_selector_msg")); // "미리 보기", "???�터 ?�현?�을 ?�력?�주?�요"
       $("#linkSelector").focus();
       return;
     }else{
       if(linkProp == ""){
-        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("input_property_msg")); // "誘몃━ 蹂닿린", "�꾨줈�쇳떚紐낆쓣 �낅젰�댁＜�몄슂"
+        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("input_property_msg")); // "미리 보기", "?�로?�티명을 ?�력?�주?�요"
         $("#linkProp").focus();
         return;
       }
       if($links.length == 0){
-        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("no_crawling_data")); // "誘몃━ 蹂닿린", "�щ·留곹븳 �곗씠�곌� �놁뒿�덈떎"
+        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("no_crawling_data")); // "미리 보기", "?�롤링한 ?�이?��? ?�습?�다"
         return;
       }
     }
 
     if(titleSelector == ""){
-      toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("input_selector_msg")); // "誘몃━ 蹂닿린", "���됲꽣 �쒗쁽�앹쓣 �낅젰�댁＜�몄슂"
+      toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("input_selector_msg")); // "미리 보기", "???�터 ?�현?�을 ?�력?�주?�요"
       $("#titleSelector").focus();
       return;
     }else{
       if(titleProp == ""){
-        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("input_property_msg")); // "誘몃━ 蹂닿린", "�꾨줈�쇳떚紐낆쓣 �낅젰�댁＜�몄슂"
+        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("input_property_msg")); // "미리 보기", "?�로?�티명을 ?�력?�주?�요"
         $("#titleProp").focus();
         return;
       }
       if($links.length == $titles.length){
       }else{
         var info = " ("+whale.i18n.getMessage("link")+": "+$links.length+", "+whale.i18n.getMessage("title")+": "+$titles.length+")";
-        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("crawling_count_not_match")+info); // "誘몃━ 蹂닿린", "�щ·留곹븳 �곗씠�곗쓽 �섍� �쇱튂�섏� �딆뒿�덈떎 (留곹겕: n, ���댄�: n)"
+        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("crawling_count_not_match")+info); // "미리 보기", "?�롤링한 ?�이?�의 ?��? ?�치?��? ?�습?�다 (링크: n, ???��?: n)"
         return;
       }
     }
     if(dateSelector == ""){
     }else{
       if(dateProp == ""){
-        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("input_property_msg")); // "誘몃━ 蹂닿린", "�꾨줈�쇳떚紐낆쓣 �낅젰�댁＜�몄슂"
+        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("input_property_msg")); // "미리 보기", "?�로?�티명을 ?�력?�주?�요"
         $("#dateProp").focus();
         return;
       }
       if($links.length == $dates.length){
       }else{
         var info = " ("+whale.i18n.getMessage("link")+": "+$links.length+", "+whale.i18n.getMessage("date")+": "+$dates.length+")";
-        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("crawling_count_not_match")+info); // "誘몃━ 蹂닿린", "�щ·留곹븳 �곗씠�곗쓽 �섍� �쇱튂�섏� �딆뒿�덈떎 (留곹겕: n, �좎쭨: n)"
+        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("crawling_count_not_match")+info); // "미리 보기", "?�롤링한 ?�이?�의 ?��? ?�치?��? ?�습?�다 (링크: n, ?�짜: n)"
         return;
       }
     }
     if(imageSelector == ""){
     }else{
       if(imageProp == ""){
-        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("input_property_msg")); // "誘몃━ 蹂닿린", "�꾨줈�쇳떚紐낆쓣 �낅젰�댁＜�몄슂"
+        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("input_property_msg")); // "미리 보기", "?�로?�티명을 ?�력?�주?�요"
         $("#imageProp").focus();
         return;
       }
       if($links.length == $images.length){
       }else{
         var info = " ("+whale.i18n.getMessage("link")+": "+$links.length+", "+whale.i18n.getMessage("thumbnail")+": "+$images.length+")";
-        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("crawling_count_not_match")+info); // "誘몃━ 蹂닿린", "�щ·留곹븳 �곗씠�곗쓽 �섍� �쇱튂�섏� �딆뒿�덈떎 (留곹겕: n, �대�吏�: n)"
+        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("crawling_count_not_match")+info); // "미리 보기", "?�롤링한 ?�이?�의 ?��? ?�치?��? ?�습?�다 (링크: n, ?��?�?: n)"
         return;
       }
     }
     if(contentSelector == ""){
     }else{
       if(contentProp == ""){
-        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("input_property_msg")); // "誘몃━ 蹂닿린", "�꾨줈�쇳떚紐낆쓣 �낅젰�댁＜�몄슂"
+        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("input_property_msg")); // "미리 보기", "?�로?�티명을 ?�력?�주?�요"
         $("#contentProp").focus();
         return;
       }
       if($links.length == $contents.length){
       }else{
         var info = " ("+whale.i18n.getMessage("link")+": "+$links.length+", "+whale.i18n.getMessage("description")+": "+$contents.length+")";
-        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("crawling_count_not_match")+info); // "誘몃━ 蹂닿린", "�щ·留곹븳 �곗씠�곗쓽 �섍� �쇱튂�섏� �딆뒿�덈떎 (留곹겕: n, �ㅻ챸: n)"
+        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("crawling_count_not_match")+info); // "미리 보기", "?�롤링한 ?�이?�의 ?��? ?�치?��? ?�습?�다 (링크: n, ?�명: n)"
         return;
       }
     }
@@ -334,7 +334,7 @@
         var content = getProp($contents.eq(i), contentProp);
         var image = getProp($images.eq(i), imageProp);
       }catch(e){
-        toast(whale.i18n.getMessage("preview"), e.message); // 誘몃━蹂닿린
+        toast(whale.i18n.getMessage("preview"), e.message); // 미리보기
         return false;
       }
       var isoDate;
@@ -346,9 +346,9 @@
           if(momentObject.isValid()){
             if(moment().startOf('date').isSame(momentObject)){
               isoDate = moment().toISOString();
-            }else if(date.indexOf(":") > -1 && moment().isBefore(momentObject)){ // �쒓컙�� �꾩옱�쒓컙蹂대떎 �щ㈃ �댁젣
+            }else if(date.indexOf(":") > -1 && moment().isBefore(momentObject)){ // ?�간?? ?�재?�간보다 ?�면 ?�제
               isoDate = momentObject.subtract(1, "day").toISOString();
-            }else if(moment().isBefore(momentObject)){ // �쒓컙�� �꾩옱�쒓컙蹂대떎 �щ㈃ �묐뀈
+            }else if(moment().isBefore(momentObject)){ // ?�간?? ?�재?�간보다 ?�면 ?�년
               isoDate = momentObject.subtract(1, "year").toISOString();
             }else{
               isoDate = momentObject.toISOString();
@@ -390,13 +390,13 @@
       if(link){
         post.link = new URL(link, feedUrl).href;
       }else{
-        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("no_link_data")); // "誘몃━蹂닿린", "留곹겕 �뺣낫媛� �놁뒿�덈떎"
+        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("no_link_data")); // "미리보기", "링크 ?�보�? ?�습?�다"
         return false;
       }
       if(title && typeof title === "string"){
         post.title = title.trim();
       }else{
-        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("no_title_data")); // "誘몃━蹂닿린", "���댄� �뺣낫媛� �놁뒿�덈떎"
+        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("no_title_data")); // "미리보기", "???��? ?�보�? ?�습?�다"
         return false;
       }
       if(isoDate){
@@ -444,7 +444,7 @@
     moment.locale(whale.i18n.getUILanguage());
     init();
 
-    // �ㅼ젙 ���� 踰꾪듉
+    // ?�정 ???? 버튼
     $("#saveSettingsBtn").on("click", function(){
       var interval = $("input:radio[name='interval']:checked").val();
       var expireDay = $("input:radio[name='expireDay']:checked").val();
@@ -459,24 +459,24 @@
       }, function(){
         whale.alarms.clear("getFeed", function(){
           whale.alarms.create("getFeed", {delayInMinutes: parseInt(interval)});
-          toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("save_complete")); // "����", "���� �섏뿀�듬땲��"
+          toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("save_complete")); // "????", "???? ?�었?�니??"
         });
       });
 
     });
 
     ///////////////////////////////////////////////////////////////////////////////////////////////////////
-    // �쇰뱶 寃��� 踰꾪듉
+    // ?�드 �??? 버튼
     $("#searchFeedBtn").on("click", function(){
       var $btn = $(this);
       $btn.data("original-text", $btn.html()).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...').prop("disabled", true);
-      var searchUrl = $("#searchUrl").val();
+      var searchUrl = $("#searchUrl").val();        // searchUrl�� ũ�Ѹ� �� url.
       $.get({
-        url: searchUrl,
+        url: searchUrl,     // url ����.
         dataType: "text"
       }).done(function(docString){
-          var domParser = new DOMParser();
-          var doc = domParser.parseFromString(docString, "text/xml");
+          var domParser = new DOMParser();      // domParser ��ü ����.
+          var doc = domParser.parseFromString(docString, "text/xml");      
           var feeds = [];
           if (containsFeed(doc)){
               feeds.push({
@@ -496,17 +496,17 @@
             }
             $('#addFeedsModal').modal('show');
           }else{
-            toast(whale.i18n.getMessage("search"), whale.i18n.getMessage("feed_not_found")); // "寃���", "�쇰뱶瑜� 李얠쓣 �� �놁뒿�덈떎"
+            toast(whale.i18n.getMessage("search"), whale.i18n.getMessage("feed_not_found")); // "�???", "?�드�? 찾을 ?? ?�습?�다"
           }
           $btn.html($btn.data("original-text")).prop("disabled", false);
       }).fail(function(){
-        toast(whale.i18n.getMessage("search"), whale.i18n.getMessage("feed_not_found")); // "寃���", "�쇰뱶瑜� 李얠쓣 �� �놁뒿�덈떎"
+        toast(whale.i18n.getMessage("search"), whale.i18n.getMessage("feed_not_found")); // "�???", "?�드�? 찾을 ?? ?�습?�다"
         $btn.html($btn.data("original-text")).prop("disabled", false);
       });
     });
     ///////////////////////////////////////////////////////////////////////////////////////////////////////    
 
-    // �쇰뱶 異붽� 踰꾪듉
+    // ?�드 추�? 버튼
     $("#searchFeedListPanel").on("click", "button", function(){
       var $btn = $(this);
       var url = $(this).data("url");
@@ -530,7 +530,7 @@
       });
     });
 
-    // �쇰뱶紐� 蹂�寃� �� ���� 踰꾪듉
+    // ?�드�? �?�? ?? ???? 버튼
     $("#saveFeedsBtn").on("click", function(){
       whale.storage.local.get(["feeds"], function(storage){
         $("input[name='feedTitle']").each(function(){
@@ -544,12 +544,12 @@
           }
         });
         whale.storage.local.set(storage, function(){
-        toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("save_complete")); // "����", "���� �섏뿀�듬땲��"
+        toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("save_complete")); // "????", "???? ?�었?�니??"
         })
       });
     });
 
-    // �쇰뱶 ��젣 踰꾪듉
+    // ?�드 ??�� 버튼
     $("#feedListPanel, #crawlerListPanel").on("click", "button[name='feedDelBtn']", function(event){
       event.stopPropagation();
       var url = $(this).data("url");
@@ -568,23 +568,23 @@
         whale.storage.local.set(storage, function(){
           var newCount = Object.keys(storage.newPostLinks).length;
           whale.sidebarAction.setBadgeText({text: newCount.toString()});
-          whale.runtime.sendMessage({msg: "refresh"}); // 媛깆떊�묒뾽 �쒖옉
+          whale.runtime.sendMessage({msg: "refresh"}); // 갱신?�업 ?�작
           init();
-          toast(whale.i18n.getMessage("delete"), whale.i18n.getMessage("delete_complete")); // "��젣", "��젣 �섏뿀�듬땲��"
+          toast(whale.i18n.getMessage("delete"), whale.i18n.getMessage("delete_complete")); // "??��", "??�� ?�었?�니??"
         })
       });
     });
 
-    // �щ·�� 留곹겕
+    // ?�롤?? 링크
     $("#crawlerListPanel").on("click", "a", function(event){
       event.stopPropagation();
     });
 
-    // �щ·�� url寃��� 踰꾪듉
+    // ?�롤?? url�??? 버튼
     $("#getSiteBtn").on("click", function(){
       var searchUrl = $("#searchWebUrl").val();
       if(searchUrl == ""){
-        toast(whale.i18n.getMessage("search"), whale.i18n.getMessage("input_crawler_url_msg")); // "寃���", "�뱀궗�댄듃 二쇱냼瑜� �낅젰�섏꽭��"
+        toast(whale.i18n.getMessage("search"), whale.i18n.getMessage("input_crawler_url_msg")); // "�???", "?�사?�트 주소�? ?�력?�세??"
         $("#searchWebUrl").focus();
         return;
       }
@@ -616,7 +616,7 @@
               var decodedString = decoder.decode(dataView);
               docString = decodedString;
             }
-            if(!charset){ // �ㅻ뜑�� charset �뺣낫 �놁쑝硫� html meta tag �뺤씤
+            if(!charset){ // ?�더?? charset ?�보 ?�으�? html meta tag ?�인
               var charsetMatch = docString.match(/<meta[^>]*charset=[\"|\']([^\"]*)[\"|\'][^>]*>/i);
               if(charsetMatch){ // <meta charset="utf-8">
                 charset = charsetMatch[1];
@@ -652,15 +652,15 @@
             $btn.html($btn.data("original-text")).prop("disabled", false);
           },
           error: function(){
-            toast(whale.i18n.getMessage("search"), whale.i18n.getMessage("page_not_found")); // "寃���", "�� �섏씠吏�瑜� 李얠쓣 �� �놁뒿�덈떎"
+            toast(whale.i18n.getMessage("search"), whale.i18n.getMessage("page_not_found")); // "�???", "?? ?�이�?�? 찾을 ?? ?�습?�다"
             $btn.html($btn.data("original-text")).prop("disabled", false);
           }
       });
 
     });
 
-    // �щ·留� �ㅼ젙 紐⑤떖
-    // �꾩닔 媛� 蹂�寃�
+    // ?�롤�? ?�정 모달
+    // ?�수 �? �?�?
     $("#feedTitle, #linkSelector, #linkProp, #titleSelector, #titleProp").on("change", function(){
       var text = $(this).val();
       if(text){
@@ -670,18 +670,18 @@
       }
     });
 
-    // 誘몃━蹂닿린 踰꾪듉
+    // 미리보기 버튼
     $("#previewCrawlerBtn").on("click", function(){
       previewer();
     });
 
-    // 誘몃━蹂닿린 �대┃ �댄똻
+    // 미리보기 ?�릭 ?�팁
     $("#postPanel").tooltip({
         selector: '[data-toggle="tooltip"]',
         trigger: "click"
     });
 
-    // ���� 踰꾪듉
+    // ???? 버튼
     $("#saveCrawlerBtn").on("click", function(){
       var feedUrl = $("#webUrl").attr("href");
       var feedTitle = $("#feedTitle").val();
@@ -697,31 +697,31 @@
       var contentProp = $("#contentProp").val();
 
       if(feedUrl == ""){
-        toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("input_crawler_url_msg")); // "����", "�뱀궗�댄듃 二쇱냼瑜� �낅젰�섏꽭��"
+        toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("input_crawler_url_msg")); // "????", "?�사?�트 주소�? ?�력?�세??"
         return;
       }
       if(feedTitle == ""){
-        toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("no_title_data")); // "����", "���댄� �뺣낫媛� �놁뒿�덈떎"
+        toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("no_title_data")); // "????", "???��? ?�보�? ?�습?�다"
         $("#feedTitle").focus();
         return;
       }
       if(titleSelector == ""){
-        toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("input_selector_msg")); // "����", "���됲꽣 �쒗쁽�앹쓣 �낅젰�댁＜�몄슂"
+        toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("input_selector_msg")); // "????", "???�터 ?�현?�을 ?�력?�주?�요"
         $("#titleSelector").focus();
         return;
       }
       if(titleProp == ""){
-        toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("input_property_msg")); // "����", "�꾨줈�쇳떚紐낆쓣 �낅젰�댁＜�몄슂"
+        toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("input_property_msg")); // "????", "?�로?�티명을 ?�력?�주?�요"
         $("#titleProp").focus();
         return;
       }
       if(linkSelector == ""){
-        toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("input_selector_msg")); // "����", "���됲꽣 �쒗쁽�앹쓣 �낅젰�댁＜�몄슂"
+        toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("input_selector_msg")); // "????", "???�터 ?�현?�을 ?�력?�주?�요"
         $("#linkSelector").focus();
         return;
       }
       if(linkProp == ""){
-        toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("input_property_msg")); // "����", "�꾨줈�쇳떚紐낆쓣 �낅젰�댁＜�몄슂"
+        toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("input_property_msg")); // "????", "?�로?�티명을 ?�력?�주?�요"
         $("#linkProp").focus();
         return;
       }
@@ -764,7 +764,7 @@
           db.collection("feeds").insertOne(newFeed)
           .catch(err => console.error('Failed to insert item: '+err))
           .finally(() => {
-            toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("save_complete")); // "����", "���� �섏뿀�듬땲��"
+            toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("save_complete")); // "????", "???? ?�었?�니??"
             $("#addCrawlerModal").modal("hide");
             init();
             $btn.html($btn.data("original-text")).prop("disabled", false);
@@ -815,7 +815,7 @@
               var decodedString = decoder.decode(dataView);
               docString = decodedString;
             }
-            if(!charset){ // �ㅻ뜑�� charset �뺣낫 �놁쑝硫� html meta tag �뺤씤
+            if(!charset){ // ?�더?? charset ?�보 ?�으�? html meta tag ?�인
               var charsetMatch = docString.match(/<meta[^>]*charset=[\"|\']([^\"]*)[\"|\'][^>]*>/i);
               if(charsetMatch){ // <meta charset="utf-8">
                 charset = charsetMatch[1];
@@ -843,12 +843,12 @@
 
     });
 
-    // 理쒓렐 �щ·�� 議고쉶
+    // 최근 ?�롤?? 조회
     $('#collapseRecentCrawler').on('show.bs.collapse', function () {
       var recentSearchLimit = localStorage.getItem("recentSearchLimit");
       if(recentSearchLimit){
         if(moment().format("YYYYMMDD") < recentSearchLimit){
-          // toast(whale.i18n.getMessage("search"), whale.i18n.getMessage("search_limit_msg")); // "寃���", "�섎（�� �쒕쾲留� 議고쉶 媛��ν빀�덈떎"
+          // toast(whale.i18n.getMessage("search"), whale.i18n.getMessage("search_limit_msg")); // "�???", "?�루?? ?�번�? 조회 �??�합?�다"
           // return;
         }
       }
@@ -889,14 +889,14 @@
         localStorage.setItem("recentSearchLimit", moment().add(1, "day").format("YYYYMMDD"));
       })
       .catch(err => {
-        toast(whale.i18n.getMessage("search"), whale.i18n.getMessage("err_noti")); // "寃���", "�곗씠�곕� 李얠쓣 �� �놁뒿�덈떎"
+        toast(whale.i18n.getMessage("search"), whale.i18n.getMessage("err_noti")); // "�???", "?�이?��? 찾을 ?? ?�습?�다"
       })
       .finally(() => {
         $btn.html($btn.data("original-text")).prop("disabled", false);
       });
     })
 
-    // Export 踰꾪듉
+    // Export 버튼
     $("#exportFileBtn").on("click", function(){
       whale.storage.local.get("feeds", function(storage){
         var feeds = [];
@@ -910,7 +910,7 @@
       });
     });
 
-    // Import 踰꾪듉
+    // Import 버튼
 		var file = document.querySelector('#importFile');
 		file.onchange = function(event){
 			attachments = [];
@@ -939,7 +939,7 @@
               }
             }
             whale.storage.local.set(storage, function(){
-              toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("save_complete")); // "����", "���� �섏뿀�듬땲��"
+              toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("save_complete")); // "????", "???? ?�었?�니??"
               init();
             });
           });
