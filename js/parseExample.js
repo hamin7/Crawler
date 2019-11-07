@@ -8,7 +8,7 @@ xhr.addEventListener('load', function(){
 	alert(doc.body.innerHTML); //불러온 Element의 body를 다시 innerHTML로 변환하여 웹페이지의 내용(문자열)이 정상적으로 Document 처리됐는지 문자열로 확인합니다.
 	doc.getElementsByClassName //가져오고자 하는 Element을 document 처리와 같은 방식(실제로 doc 변수의 인스턴스는 Document로 지정되어 있습니다)으로 불러옵니다.
 	
-	/*인스턴스가 Document로 지정된 것인지 확인하고자 한다면 다음 주석을 해제해 주세요.
-	**; alert(`doc instaceof Document:　${doc instanceof Document}`);
-	*/
+	//인스턴스가 Document로 지정된 것인지 확인.
+	alert(`doc instaceof Document:　${doc instanceof Document}`);
+	
 });
