@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta charset="utf-8">
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <link href="css/sidebar.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- 상단 메뉴 -->
+  <div class="d-flex border-bottom bg-white sticky-top px-1" style="z-index: 1071;">
+    <div> <!-- 상단 메뉴 좌측 -->
+      <ul class="nav nav-pills" id="pills-tab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link px-2 active" id="pills-new-tab" data-toggle="pill" href="#pills-new" role="tab" aria-controls="pills-new" aria-selected="false" title="새 글 보기" data-i18n-code="view_new_post" data-i18n-attr="title"><span class="badge badge-primary new-count-badge">0</span></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-2" id="pills-list-tab" data-toggle="pill" href="#pills-list" role="tab" aria-controls="pills-list" aria-selected="false" title="전체 보기" data-i18n-code="view_all_post" data-i18n-attr="title"><i class="fas fa-align-left"></i></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link px-2" id="pills-star-tab" data-toggle="pill" href="#pills-star" role="tab" aria-controls="pills-star" aria-selected="true" title="별표한 글 보기" data-i18n-code="view_starred_post" data-i18n-attr="title"><i class="fas fa-star"></i></i></a>
+        </li>
+      </ul>
+    </div>
+    <div class="ml-auto"> <!-- 상단 메뉴 우측 -->
+      <button type="button" class="btn btn-outline-primary border-0 px-2" name="settings" title="설정" data-i18n-code="setting" data-i18n-attr="title"><i class="fas fa-cog"></i></button>
+      <button type="button" class="btn btn-outline-primary border-0 px-2" name="addFeed" title="피드 추가" data-i18n-code="add_feed" data-i18n-attr="title"><i class="fas fa-plus"></i></button>
+      <button type="button" id="searchDropDown" class="btn btn-outline-primary border-0 px-2" name="search" title="글 검색" data-i18n-code="search_post" data-i18n-attr="title"><i class="fas fa-search"></i></button>
+    </div>
+  </div>
+
+  <!-- Body 영역 -->
+  <div class="tab-content" id="pills-tabContent" style="position:absolute; height:calc(100% - 40px); width:100%; overflow:hidden; overflow-y: scroll; z-index:1000;">
+    <!-- 토스트 -->
+    <div aria-live="polite" aria-atomic="true" style="position: relative; z-index:1070;">
+      <div id="toastListPanel" style="position: absolute; top: 0; right: 0;">
+        <!-- dynamic append toasts -->
+      </div>
+    </div>
+    <form id="searchForm" class="px-2" style="display:none;">
+      <div class="input-group input-group-sm">
+        <input type="text" class="form-control" id="searchText" placeholder="검색어를 입력해주세요" aria-label="search" aria-describedby="search" data-i18n-code="input_search_msg" data-i18n-attr="placeholder">
+        <div class="input-group-append">
+          <button class="btn btn-outline-primary" type="button" id="searchBtn" data-i18n-code="search">검색</button>
+        </div>
+      </div>
+    </form>
+    <!-- New -->
+    <div class="tab-pane fade show active" id="pills-new" role="tabpanel" aria-labelledby="pills-new-tab">
+      <div id="newLoading" style="display:none;">
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border spinner-border-sm text-primary my-1" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      </div>
+      <div id="newNotFound" class="card text-center" style="display:none;">
+        <div class="card-body">
+          <h1 class="card-title display-1 text-muted"><i class="fas fa-check"></i></h1>
+          <h5 class="card-text text-muted" data-i18n-code="empty_new_post">새 글이 없습니다</h5>
+          <p class="card-text"><small class="text-muted" data-i18n-code="empty_new_post_sub">새 글이 추가되면 아이콘에 숫자가 표시됩니다</small></p>
+        </div>
+      </div>
+      <ul id="postNewPanel" class="list-group" style="line-height:1.2;">
+        <!-- dynamic append posts -->
+      </ul>
+    </div>
+
+    <!-- All -->
+    <div class="tab-pane fade" id="pills-list" role="tabpanel" aria-labelledby="pills-list-tab">
+      <div id="listLoading" style="display:none;">
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border spinner-border-sm text-primary my-1" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      </div>
+      <div id="listNotFound" class="card text-center" style="display:none;">
+        <div class="card-body">
+          <h1 class="card-title display-1 text-muted"><i class="fas fa-rss"></i></h1>
+          <h5 class="card-text text-muted" data-i18n-code="empty_all_post">등록된 피드가 없습니다</h5>
+          <p class="card-text"><small class="text-muted" data-i18n-code="empty_all_post_sub">RSS 피드나 크롤러를 등록해주세요</small></p>
+        </div>
+      </div>
+      <ul id="postListPanel" class="list-group" style="line-height:1.2;">
+        <!-- dynamic append posts -->
+      </ul>
+    </div>
+
+    <!-- Starred -->
+    <div class="tab-pane fade" id="pills-star" role="tabpanel" aria-labelledby="pills-star-tab">
+      <div id="starLoading" style="display:none;">
+        <div class="d-flex justify-content-center">
+          <div class="spinner-border spinner-border-sm text-primary my-1" role="status">
+            <span class="sr-only">Loading...</span>
+          </div>
+        </div>
+      </div>
+      <div id="starNotFound" class="card text-center" style="display:none;">
+        <div class="card-body">
+          <h1 class="card-title display-1 text-muted"><i class="fas fa-star"></i></h1>
+          <h5 class="card-text text-muted" data-i18n-code="empty_star_post">별 표시한 게시글이 없습니다</h5>
+          <p class="card-text"><small class="text-muted" data-i18n-code="empty_star_post_sub">게시글을 우클릭 후 별 표시 하실 수 있습니다</small></p>
+        </div>
+      </div>
+      <ul id="postStarPanel" class="list-group" style="line-height:1.2;">
+        <!-- dynamic append posts -->
+      </ul>
+    </div>
+  </div>
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/BootstrapMenu-custom.js"></script>
+  <script src="js/fontawesome.all.min.js"></script>
+  <script src="js/moment-with-locales.js"></script>
+  <script src="js/htmlencode.js"></script>
+  <script src="js/common.js"></script>
+  <script src="js/sidebar.js"></script>
+</body>
+
+</html>
