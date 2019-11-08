@@ -61,7 +61,7 @@
     $toast.toast("show");
   }
 
-  // �??�한 ?�드 ?�업?? 뿌리�?
+  // �??�한 ?�드 ?�업?? 뿌리�?
   function appendSearchFeed(title, url){
     isNewFeed(url, function(isNew, feeds){
       var domain = extractHostname(url);
@@ -88,7 +88,7 @@
     });
   }
 
-  // ?�재 추�??�어 ?�는 ?�드?? 리스?? 뿌리�?
+  // ?�재 추�??�어 ?�는 ?�드?? 리스?? 뿌리�?
   function appendFeed(feed){
     var feedTag ="";
     feedTag += '<li class="list-group-item list-group-item-action '+(feed.isError?'list-group-item-danger':'list-group-item-primary')+'">';
@@ -108,7 +108,7 @@
     $("#feedListPanel").append($feedTag);
   }
 
-  // ?�재 추�??�어 ?�는 ?�롤?�들 리스?? 뿌리�?
+  // ?�재 추�??�어 ?�는 ?�롤?�들 리스?? 뿌리�?
   function appendCrawler(feed){
     var feedTag ="";
     feedTag += '<li class="list-group-item list-group-item-action '+(feed.isError?'list-group-item-danger':'list-group-item-primary')+'">';
@@ -139,7 +139,7 @@
     $("#crawlerListPanel").append($feedTag);
   }
 
-  // ?�들?? 추�??? 최근 ?�롤?�들 리스?? 뿌리�?
+  // ?�들?? 추�??? 최근 ?�롤?�들 리스?? 뿌리�?
   function appendRecentCrawler(feed){
     var feedTag ="";
     feedTag += '<li class="list-group-item list-group-item-action list-group-item-light">';
@@ -250,77 +250,77 @@
     }
 
     if(linkSelector == ""){
-      toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("input_selector_msg")); // "미리 보기", "???�터 ?�현?�을 ?�력?�주?�요"
+      toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("input_selector_msg")); // "미리 보기", "???�터 ?�현?�을 ?�력?�주?�요"
       $("#linkSelector").focus();
       return;
     }else{
       if(linkProp == ""){
-        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("input_property_msg")); // "미리 보기", "?�로?�티명을 ?�력?�주?�요"
+        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("input_property_msg")); // "미리 보기", "?�로?�티명을 ?�력?�주?�요"
         $("#linkProp").focus();
         return;
       }
       if($links.length == 0){
-        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("no_crawling_data")); // "미리 보기", "?�롤링한 ?�이?��? ?�습?�다"
+        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("no_crawling_data")); // "미리 보기", "?�롤링한 ?�이?��? ?�습?�다"
         return;
       }
     }
 
     if(titleSelector == ""){
-      toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("input_selector_msg")); // "미리 보기", "???�터 ?�현?�을 ?�력?�주?�요"
+      toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("input_selector_msg")); // "미리 보기", "???�터 ?�현?�을 ?�력?�주?�요"
       $("#titleSelector").focus();
       return;
     }else{
       if(titleProp == ""){
-        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("input_property_msg")); // "미리 보기", "?�로?�티명을 ?�력?�주?�요"
+        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("input_property_msg")); // "미리 보기", "?�로?�티명을 ?�력?�주?�요"
         $("#titleProp").focus();
         return;
       }
       if($links.length == $titles.length){
       }else{
         var info = " ("+whale.i18n.getMessage("link")+": "+$links.length+", "+whale.i18n.getMessage("title")+": "+$titles.length+")";
-        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("crawling_count_not_match")+info); // "미리 보기", "?�롤링한 ?�이?�의 ?��? ?�치?��? ?�습?�다 (링크: n, ???��?: n)"
+        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("crawling_count_not_match")+info); // "미리 보기", "?�롤링한 ?�이?�의 ?��? ?�치?��? ?�습?�다 (링크: n, ???��?: n)"
         return;
       }
     }
     if(dateSelector == ""){
     }else{
       if(dateProp == ""){
-        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("input_property_msg")); // "미리 보기", "?�로?�티명을 ?�력?�주?�요"
+        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("input_property_msg")); // "미리 보기", "?�로?�티명을 ?�력?�주?�요"
         $("#dateProp").focus();
         return;
       }
       if($links.length == $dates.length){
       }else{
         var info = " ("+whale.i18n.getMessage("link")+": "+$links.length+", "+whale.i18n.getMessage("date")+": "+$dates.length+")";
-        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("crawling_count_not_match")+info); // "미리 보기", "?�롤링한 ?�이?�의 ?��? ?�치?��? ?�습?�다 (링크: n, ?�짜: n)"
+        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("crawling_count_not_match")+info); // "미리 보기", "?�롤링한 ?�이?�의 ?��? ?�치?��? ?�습?�다 (링크: n, ?�짜: n)"
         return;
       }
     }
     if(imageSelector == ""){
     }else{
       if(imageProp == ""){
-        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("input_property_msg")); // "미리 보기", "?�로?�티명을 ?�력?�주?�요"
+        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("input_property_msg")); // "미리 보기", "?�로?�티명을 ?�력?�주?�요"
         $("#imageProp").focus();
         return;
       }
       if($links.length == $images.length){
       }else{
         var info = " ("+whale.i18n.getMessage("link")+": "+$links.length+", "+whale.i18n.getMessage("thumbnail")+": "+$images.length+")";
-        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("crawling_count_not_match")+info); // "미리 보기", "?�롤링한 ?�이?�의 ?��? ?�치?��? ?�습?�다 (링크: n, ?��?�?: n)"
+        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("crawling_count_not_match")+info); // "미리 보기", "?�롤링한 ?�이?�의 ?��? ?�치?��? ?�습?�다 (링크: n, ?��?�?: n)"
         return;
       }
     }
     if(contentSelector == ""){
     }else{
       if(contentProp == ""){
-        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("input_property_msg")); // "미리 보기", "?�로?�티명을 ?�력?�주?�요"
+        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("input_property_msg")); // "미리 보기", "?�로?�티명을 ?�력?�주?�요"
         $("#contentProp").focus();
         return;
       }
       if($links.length == $contents.length){
       }else{
         var info = " ("+whale.i18n.getMessage("link")+": "+$links.length+", "+whale.i18n.getMessage("description")+": "+$contents.length+")";
-        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("crawling_count_not_match")+info); // "미리 보기", "?�롤링한 ?�이?�의 ?��? ?�치?��? ?�습?�다 (링크: n, ?�명: n)"
+        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("crawling_count_not_match")+info); // "미리 보기", "?�롤링한 ?�이?�의 ?��? ?�치?��? ?�습?�다 (링크: n, ?�명: n)"
         return;
       }
     }
@@ -346,9 +346,9 @@
           if(momentObject.isValid()){
             if(moment().startOf('date').isSame(momentObject)){
               isoDate = moment().toISOString();
-            }else if(date.indexOf(":") > -1 && moment().isBefore(momentObject)){ // ?�간?? ?�재?�간보다 ?�면 ?�제
+            }else if(date.indexOf(":") > -1 && moment().isBefore(momentObject)){ // ?�간?? ?�재?�간보다 ?�면 ?�제
               isoDate = momentObject.subtract(1, "day").toISOString();
-            }else if(moment().isBefore(momentObject)){ // ?�간?? ?�재?�간보다 ?�면 ?�년
+            }else if(moment().isBefore(momentObject)){ // ?�간?? ?�재?�간보다 ?�면 ?�년
               isoDate = momentObject.subtract(1, "year").toISOString();
             }else{
               isoDate = momentObject.toISOString();
@@ -390,13 +390,13 @@
       if(link){
         post.link = new URL(link, feedUrl).href;
       }else{
-        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("no_link_data")); // "미리보기", "링크 ?�보�? ?�습?�다"
+        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("no_link_data")); // "미리보기", "링크 ?�보�? ?�습?�다"
         return false;
       }
       if(title && typeof title === "string"){
         post.title = title.trim();
       }else{
-        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("no_title_data")); // "미리보기", "???��? ?�보�? ?�습?�다"
+        toast(whale.i18n.getMessage("preview"), whale.i18n.getMessage("no_title_data")); // "미리보기", "???��? ?�보�? ?�습?�다"
         return false;
       }
       if(isoDate){
@@ -444,7 +444,7 @@
     moment.locale(whale.i18n.getUILanguage());
     init();
 
-    // ?�정 ???? 버튼
+    // ?�정 ???? 버튼
     $("#saveSettingsBtn").on("click", function(){
       var interval = $("input:radio[name='interval']:checked").val();
       var expireDay = $("input:radio[name='expireDay']:checked").val();
@@ -459,23 +459,22 @@
       }, function(){
         whale.alarms.clear("getFeed", function(){
           whale.alarms.create("getFeed", {delayInMinutes: parseInt(interval)});
-          toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("save_complete")); // "????", "???? ?�었?�니??"
+          toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("save_complete")); // "????", "???? ?�었?�니??"
         });
       });
 
     });
 
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////
-    // ?�드 �??? 버튼
+    // ?�드 �??? 버튼
     $("#searchFeedBtn").on("click", function(){
       var $btn = $(this);
       $btn.data("original-text", $btn.html()).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...').prop("disabled", true);
-      var searchUrl = $("#searchUrl").val();        // searchUrl�� ũ�Ѹ� �� url.
+      var searchUrl = $("#searchUrl").val();        // searchUrl�� ũ�Ѹ� �� url.
       $.get({
-        url: searchUrl,     // url ����.
+        url: searchUrl,     // url ����.
         dataType: "text"
       }).done(function(docString){
-          var domParser = new DOMParser();      // domParser ��ü ����.
+          var domParser = new DOMParser();      // domParser ��ü ����.
           var doc = domParser.parseFromString(docString, "text/xml");      
           var feeds = [];
           if (containsFeed(doc)){
@@ -496,17 +495,17 @@
             }
             $('#addFeedsModal').modal('show');
           }else{
-            toast(whale.i18n.getMessage("search"), whale.i18n.getMessage("feed_not_found")); // "�???", "?�드�? 찾을 ?? ?�습?�다"
+            toast(whale.i18n.getMessage("search"), whale.i18n.getMessage("feed_not_found")); // "�???", "?�드�? 찾을 ?? ?�습?�다"
           }
           $btn.html($btn.data("original-text")).prop("disabled", false);
       }).fail(function(){
-        toast(whale.i18n.getMessage("search"), whale.i18n.getMessage("feed_not_found")); // "�???", "?�드�? 찾을 ?? ?�습?�다"
+        toast(whale.i18n.getMessage("search"), whale.i18n.getMessage("feed_not_found")); // "�???", "?�드�? 찾을 ?? ?�습?�다"
         $btn.html($btn.data("original-text")).prop("disabled", false);
       });
     });
-    ///////////////////////////////////////////////////////////////////////////////////////////////////////    
+        
 
-    // ?�드 추�? 버튼
+    // ?�드 추�? 버튼
     $("#searchFeedListPanel").on("click", "button", function(){
       var $btn = $(this);
       var url = $(this).data("url");
@@ -530,7 +529,7 @@
       });
     });
 
-    // ?�드�? �?�? ?? ???? 버튼
+    // ?�드�? �?�? ?? ???? 버튼
     $("#saveFeedsBtn").on("click", function(){
       whale.storage.local.get(["feeds"], function(storage){
         $("input[name='feedTitle']").each(function(){
@@ -544,12 +543,12 @@
           }
         });
         whale.storage.local.set(storage, function(){
-        toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("save_complete")); // "????", "???? ?�었?�니??"
+        toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("save_complete")); // "????", "???? ?�었?�니??"
         })
       });
     });
 
-    // ?�드 ??�� 버튼
+    // ?�드 ??�� 버튼
     $("#feedListPanel, #crawlerListPanel").on("click", "button[name='feedDelBtn']", function(event){
       event.stopPropagation();
       var url = $(this).data("url");
@@ -568,28 +567,28 @@
         whale.storage.local.set(storage, function(){
           var newCount = Object.keys(storage.newPostLinks).length;
           whale.sidebarAction.setBadgeText({text: newCount.toString()});
-          whale.runtime.sendMessage({msg: "refresh"}); // 갱신?�업 ?�작
+          whale.runtime.sendMessage({msg: "refresh"}); // 갱신?�업 ?�작
           init();
-          toast(whale.i18n.getMessage("delete"), whale.i18n.getMessage("delete_complete")); // "??��", "??�� ?�었?�니??"
+          toast(whale.i18n.getMessage("delete"), whale.i18n.getMessage("delete_complete")); // "??��", "??�� ?�었?�니??"
         })
       });
     });
 
-    // ?�롤?? 링크
+    // ?�롤?? 링크
     $("#crawlerListPanel").on("click", "a", function(event){
       event.stopPropagation();
     });
-
-    // ?�롤?? url�??? 버튼
+    //#######################################################################################
+    // ?�롤?? url�??? 버튼
     $("#getSiteBtn").on("click", function(){
-      var searchUrl = $("#searchWebUrl").val();
+      var searchUrl = $("#searchWebUrl").val();     // 설정된 사이트 소스 받기.
       if(searchUrl == ""){
-        toast(whale.i18n.getMessage("search"), whale.i18n.getMessage("input_crawler_url_msg")); // "�???", "?�사?�트 주소�? ?�력?�세??"
+        toast(whale.i18n.getMessage("search"), whale.i18n.getMessage("input_crawler_url_msg")); // "�???", "?�사?�트 주소�? ?�력?�세??"
         $("#searchWebUrl").focus();
         return;
       }
 
-      setCrawlerModal();
+      setCrawlerModal()
 
       var $btn = $(this);
       $btn.data("original-text", $btn.html()).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Loading...').prop("disabled", true);
@@ -616,7 +615,7 @@
               var decodedString = decoder.decode(dataView);
               docString = decodedString;
             }
-            if(!charset){ // ?�더?? charset ?�보 ?�으�? html meta tag ?�인
+            if(!charset){ // ?�더?? charset ?�보 ?�으�? html meta tag ?�인
               var charsetMatch = docString.match(/<meta[^>]*charset=[\"|\']([^\"]*)[\"|\'][^>]*>/i);
               if(charsetMatch){ // <meta charset="utf-8">
                 charset = charsetMatch[1];
@@ -652,15 +651,17 @@
             $btn.html($btn.data("original-text")).prop("disabled", false);
           },
           error: function(){
-            toast(whale.i18n.getMessage("search"), whale.i18n.getMessage("page_not_found")); // "�???", "?? ?�이�?�? 찾을 ?? ?�습?�다"
+            toast(whale.i18n.getMessage("search"), whale.i18n.getMessage("page_not_found")); // "�???", "?? ?�이�?�? 찾을 ?? ?�습?�다"
             $btn.html($btn.data("original-text")).prop("disabled", false);
           }
       });
 
     });
 
-    // ?�롤�? ?�정 모달
-    // ?�수 �? �?�?
+    //#######################################################################################
+
+    // ?�롤�? ?�정 모달
+    // ?�수 �? �?�?
     $("#feedTitle, #linkSelector, #linkProp, #titleSelector, #titleProp").on("change", function(){
       var text = $(this).val();
       if(text){
@@ -675,7 +676,7 @@
       previewer();
     });
 
-    // 미리보기 ?�릭 ?�팁
+    // 미리보기 ?�릭 ?�팁
     $("#postPanel").tooltip({
         selector: '[data-toggle="tooltip"]',
         trigger: "click"
@@ -697,31 +698,31 @@
       var contentProp = $("#contentProp").val();
 
       if(feedUrl == ""){
-        toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("input_crawler_url_msg")); // "????", "?�사?�트 주소�? ?�력?�세??"
+        toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("input_crawler_url_msg")); // "????", "?�사?�트 주소�? ?�력?�세??"
         return;
       }
       if(feedTitle == ""){
-        toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("no_title_data")); // "????", "???��? ?�보�? ?�습?�다"
+        toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("no_title_data")); // "????", "???��? ?�보�? ?�습?�다"
         $("#feedTitle").focus();
         return;
       }
       if(titleSelector == ""){
-        toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("input_selector_msg")); // "????", "???�터 ?�현?�을 ?�력?�주?�요"
+        toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("input_selector_msg")); // "????", "???�터 ?�현?�을 ?�력?�주?�요"
         $("#titleSelector").focus();
         return;
       }
       if(titleProp == ""){
-        toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("input_property_msg")); // "????", "?�로?�티명을 ?�력?�주?�요"
+        toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("input_property_msg")); // "????", "?�로?�티명을 ?�력?�주?�요"
         $("#titleProp").focus();
         return;
       }
       if(linkSelector == ""){
-        toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("input_selector_msg")); // "????", "???�터 ?�현?�을 ?�력?�주?�요"
+        toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("input_selector_msg")); // "????", "???�터 ?�현?�을 ?�력?�주?�요"
         $("#linkSelector").focus();
         return;
       }
       if(linkProp == ""){
-        toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("input_property_msg")); // "????", "?�로?�티명을 ?�력?�주?�요"
+        toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("input_property_msg")); // "????", "?�로?�티명을 ?�력?�주?�요"
         $("#linkProp").focus();
         return;
       }
@@ -764,7 +765,7 @@
           db.collection("feeds").insertOne(newFeed)
           .catch(err => console.error('Failed to insert item: '+err))
           .finally(() => {
-            toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("save_complete")); // "????", "???? ?�었?�니??"
+            toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("save_complete")); // "????", "???? ?�었?�니??"
             $("#addCrawlerModal").modal("hide");
             init();
             $btn.html($btn.data("original-text")).prop("disabled", false);
@@ -815,7 +816,7 @@
               var decodedString = decoder.decode(dataView);
               docString = decodedString;
             }
-            if(!charset){ // ?�더?? charset ?�보 ?�으�? html meta tag ?�인
+            if(!charset){ // ?�더?? charset ?�보 ?�으�? html meta tag ?�인
               var charsetMatch = docString.match(/<meta[^>]*charset=[\"|\']([^\"]*)[\"|\'][^>]*>/i);
               if(charsetMatch){ // <meta charset="utf-8">
                 charset = charsetMatch[1];
@@ -843,12 +844,12 @@
 
     });
 
-    // 최근 ?�롤?? 조회
+    // 최근 ?�롤?? 조회
     $('#collapseRecentCrawler').on('show.bs.collapse', function () {
       var recentSearchLimit = localStorage.getItem("recentSearchLimit");
       if(recentSearchLimit){
         if(moment().format("YYYYMMDD") < recentSearchLimit){
-          // toast(whale.i18n.getMessage("search"), whale.i18n.getMessage("search_limit_msg")); // "�???", "?�루?? ?�번�? 조회 �??�합?�다"
+          // toast(whale.i18n.getMessage("search"), whale.i18n.getMessage("search_limit_msg")); // "�???", "?�루?? ?�번�? 조회 �??�합?�다"
           // return;
         }
       }
@@ -889,7 +890,7 @@
         localStorage.setItem("recentSearchLimit", moment().add(1, "day").format("YYYYMMDD"));
       })
       .catch(err => {
-        toast(whale.i18n.getMessage("search"), whale.i18n.getMessage("err_noti")); // "�???", "?�이?��? 찾을 ?? ?�습?�다"
+        toast(whale.i18n.getMessage("search"), whale.i18n.getMessage("err_noti")); // "�???", "?�이?��? 찾을 ?? ?�습?�다"
       })
       .finally(() => {
         $btn.html($btn.data("original-text")).prop("disabled", false);
@@ -939,7 +940,7 @@
               }
             }
             whale.storage.local.set(storage, function(){
-              toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("save_complete")); // "????", "???? ?�었?�니??"
+              toast(whale.i18n.getMessage("save"), whale.i18n.getMessage("save_complete")); // "????", "???? ?�었?�니??"
               init();
             });
           });
